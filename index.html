@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Creativos WebSEO | Diseño Web Profesional Ecuador</title>
+  <meta name="description" content="Diseño web profesional en HTML puro. Landing pages ultra veloces, SEO y publicidad digital. Más clientes desde el primer día." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --navy2: #122033;
+      --cyan: #38bdf8;
+      --cyan2: #0ea5e9;
+      --white: #f0f6ff;
+      --gray: #8aa0b8;
+      --card: #152338;
+      --border: rgba(56,189,248,0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 6vw;
+      background: rgba(13,27,42,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo-wrap { display: flex; align-items: center; }
+    .logo-text { font-family: 'Syne', sans-serif; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; }
+    .logo-line1 { display: block; font-size: 1rem; color: #c8dff5; }
+    .logo-line2 { display: block; font-size: 1rem; color: #c8dff5; }
+    .logo-line2 .bracket { color: var(--cyan); }
+    .logo-dot { display: inline-block; width: 7px; height: 7px; background: var(--cyan); border-radius: 2px; margin-bottom: 2px; margin-left: 2px; }
+    .logo-i { position: relative; color: #c8dff5; font-variant-numeric: normal; }
+    .logo-i::before {
+      content: 'ı'; /* i sin punto */
+      position: absolute; left: 0; top: 0;
+      color: #c8dff5;
+    }
+    .logo-i { color: transparent; }
+    .logo-i::after {
+      content: '';
+      position: absolute;
+      top: 1px; left: 47%; transform: translateX(-50%);
+      width: 3px; height: 3px;
+      background: var(--cyan); border-radius: 1px;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--gray); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-cta {
+      background: var(--cyan); color: var(--navy); font-weight: 500; font-size: .88rem;
+      padding: .55rem 1.3rem; border-radius: 6px; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--cyan2); transform: translateY(-1px); }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all .3s; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 9rem 6vw 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 70% at 60% 50%, rgba(56,189,248,.06) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    #matrix-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      opacity: 0.18; pointer-events: none; z-index: 0;
+    }
+    .hero > *:not(#matrix-canvas):not(.code-deco) { position: relative; z-index: 1; }
+    .code-deco { z-index: 1; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(56,189,248,.1); border: 1px solid var(--border);
+      color: var(--cyan); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+      padding: .35rem .9rem; border-radius: 100px; margin-bottom: 2rem;
+      width: fit-content;
+      animation: fadeUp .6s ease both;
+    }
+    .hero-tag::before { content: ''; width: 7px; height: 7px; background: var(--cyan); border-radius: 50%; animation: pulse 2s infinite; }
+
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+
+    h1 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(1.4rem, 2.8vw, 2.4rem); line-height: 1.2; letter-spacing: -.01em;
+      max-width: 600px;
+      animation: fadeUp .7s .1s ease both;
+    }
+    h1 em { font-style: normal; color: var(--cyan); }
+
+    .hero-sub {
+      margin-top: 1.6rem; max-width: 520px;
+      color: var(--gray); font-size: 1.05rem; line-height: 1.7;
+      animation: fadeUp .7s .2s ease both;
+    }
+
+    .hero-actions {
+      margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp .7s .3s ease both;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--cyan); color: var(--navy); font-weight: 500;
+      padding: .85rem 2rem; border-radius: 8px; text-decoration: none;
+      font-size: 1rem; transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: var(--cyan2); transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 1px solid var(--border); color: var(--white);
+      padding: .85rem 2rem; border-radius: 8px; text-decoration: none;
+      font-size: 1rem; transition: border-color .2s, transform .15s;
+    }
+    .btn-secondary:hover { border-color: var(--cyan); transform: translateY(-2px); }
+
+    .hero-stats {
+      margin-top: 2rem; display: flex; gap: 3rem; flex-wrap: wrap;
+      animation: fadeUp .7s .4s ease both;
+    }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--cyan); }
+    .stat-lbl { font-size: .82rem; color: var(--gray); margin-top: .1rem; }
+
+    /* decorative code block */
+    .code-deco {
+      position: absolute; right: 6vw; top: 50%; transform: translateY(-50%);
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.5rem 2rem; font-family: monospace; font-size: .82rem; line-height: 1.9;
+      color: var(--gray); max-width: 320px;
+      animation: fadeUp .7s .5s ease both;
+      display: none; /* shown via media query */
+    }
+    .code-deco .k { color: var(--cyan); }
+    .code-deco .v { color: #86efac; }
+    .code-deco .c { color: #475569; }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 6vw; }
+    .section-tag {
+      display: inline-block; color: var(--cyan); font-size: .78rem;
+      letter-spacing: .15em; text-transform: uppercase; margin-bottom: 1rem;
+    }
+    h2 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -.02em; line-height: 1.1;
+      max-width: 600px;
+    }
+    h2 em { font-style: normal; color: var(--cyan); }
+    .section-lead { color: var(--gray); margin-top: 1rem; max-width: 500px; line-height: 1.7; }
+
+    /* ── WHY ── */
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .why-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 2rem 1.8rem; transition: border-color .2s, transform .2s;
+    }
+    .why-card:hover { border-color: var(--cyan); transform: translateY(-4px); }
+    .why-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+    .why-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .why-card p { font-size: .88rem; color: var(--gray); line-height: 1.6; }
+
+    /* ── SERVICES ── */
+    #servicios { background: var(--navy2); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .svc-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 2rem; position: relative; overflow: hidden;
+      transition: transform .2s, border-color .2s;
+    }
+    .svc-card:hover { transform: translateY(-5px); border-color: var(--cyan); }
+    .svc-card.featured { border-color: var(--cyan); }
+    .badge {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      background: var(--cyan); color: var(--navy); font-size: .7rem; font-weight: 700;
+      padding: .2rem .7rem; border-radius: 100px; letter-spacing: .05em;
+    }
+    .svc-price { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--cyan); }
+    .svc-price sup { font-size: 1rem; vertical-align: super; }
+    .svc-name { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; margin: .5rem 0 .8rem; }
+    .svc-desc { color: var(--gray); font-size: .88rem; line-height: 1.65; margin-bottom: 1.4rem; }
+    .svc-features { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .svc-features li { font-size: .85rem; color: var(--gray); display: flex; gap: .6rem; align-items: flex-start; }
+    .svc-features li::before { content: '✓'; color: var(--cyan); flex-shrink: 0; font-weight: 700; }
+    .svc-cta {
+      display: block; text-align: center; margin-top: 1.8rem;
+      background: var(--cyan); color: var(--navy); font-weight: 500;
+      padding: .7rem; border-radius: 7px; text-decoration: none;
+      font-size: .9rem; transition: background .2s;
+    }
+    .svc-cta:hover { background: var(--cyan2); }
+    .svc-cta.outline {
+      background: none; border: 1px solid var(--border); color: var(--white);
+    }
+    .svc-cta.outline:hover { border-color: var(--cyan); color: var(--cyan); background: none; }
+
+    /* ── COMBO HIGHLIGHT ── */
+    .combo-wrap {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, rgba(56,189,248,.12), rgba(14,165,233,.05));
+      border: 1px solid var(--cyan); border-radius: 16px;
+      padding: 2.5rem 2rem;
+      display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center;
+    }
+    .combo-label { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--cyan); margin-bottom: .5rem; }
+    .combo-title { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; }
+    .combo-items { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+    .combo-item {
+      background: rgba(56,189,248,.1); border: 1px solid var(--border);
+      font-size: .8rem; padding: .3rem .8rem; border-radius: 6px;
+    }
+    .combo-price-block { text-align: center; flex-shrink: 0; }
+    .combo-price { font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800; color: var(--cyan); line-height: 1; }
+    .combo-old { color: var(--gray); text-decoration: line-through; font-size: .9rem; margin-bottom: .3rem; }
+    .combo-cta {
+      display: block; margin-top: 1rem;
+      background: var(--cyan); color: var(--navy); font-weight: 600;
+      padding: .7rem 1.5rem; border-radius: 8px; text-decoration: none;
+      font-size: .9rem; text-align: center; white-space: nowrap;
+    }
+    .combo-cta:hover { background: var(--cyan2); }
+
+    /* ── PRICING TABLE ── */
+    #precios { }
+    .price-table {
+      width: 100%; border-collapse: collapse; margin-top: 2.5rem;
+      font-size: .9rem;
+    }
+    .price-table thead { background: var(--card); }
+    .price-table th {
+      text-align: left; padding: 1rem 1.3rem;
+      color: var(--cyan); font-family: 'Syne', sans-serif; font-size: .82rem;
+      letter-spacing: .08em; text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+    .price-table td { padding: .85rem 1.3rem; border-bottom: 1px solid var(--border); color: var(--gray); }
+    .price-table tr:hover td { background: rgba(56,189,248,.04); }
+    .price-table td:first-child { color: var(--white); font-weight: 400; }
+    .price-table td:last-child { color: var(--cyan); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
+    .price-table .highlight td { background: rgba(56,189,248,.06); }
+    .tag-rec {
+      display: inline-block; background: var(--cyan); color: var(--navy);
+      font-size: .65rem; font-weight: 700; padding: .1rem .5rem; border-radius: 4px;
+      margin-left: .5rem; letter-spacing: .05em;
+    }
+
+    /* ── CTA SECTION ── */
+    #contacto {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(56,189,248,.08), rgba(13,27,42,0) 60%);
+      border-top: 1px solid var(--border);
+    }
+    #contacto h2 { max-width: 100%; margin: 0 auto; }
+    #contacto .section-lead { margin: 1rem auto 0; text-align: center; }
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: .8rem;
+      background: #25D366; color: #fff; font-weight: 600;
+      padding: 1rem 2.2rem; border-radius: 10px; text-decoration: none;
+      font-size: 1.05rem; margin-top: 2.5rem;
+      transition: background .2s, transform .15s; box-shadow: 0 8px 32px rgba(37,211,102,.25);
+    }
+    .wa-btn:hover { background: #1ebe5a; transform: translateY(-3px); }
+    .wa-icon { width: 24px; height: 24px; fill: white; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 6vw; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer p { color: var(--gray); font-size: .83rem; }
+    footer a { color: var(--cyan); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (min-width: 900px) {
+      .code-deco { display: block; }
+      h1 { max-width: 560px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 65px; left: 0; right: 0;
+        background: var(--navy2); padding: 2rem 6vw;
+        border-bottom: 1px solid var(--border); gap: 1.5rem;
+      }
+      .nav-links.open + .nav-cta { display: block; margin: 0 6vw 1rem; }
+      .combo-wrap { grid-template-columns: 1fr; }
+      .combo-price-block { text-align: left; }
+    }
+    @media (max-width: 500px) {
+      .hero-stats { gap: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo-wrap">
+      <div class="logo-text">
+        <span class="logo-line1">Creat<span class="logo-i">i</span>vos</span>
+        <span class="logo-line2"><span class="bracket">&lt;</span>WebSEO<span class="bracket">&gt;</span></span>
+      </div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#precios">Precios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a class="nav-cta" href="https://wa.me/5930978747864?text=Hola,%20quiero%20más%20información%20sobre%20sus%20servicios" target="_blank">Hablar por WhatsApp</a>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <canvas id="matrix-canvas"></canvas>
+    <div class="hero-tag">Diseño Web Profesional · Ecuador</div>
+    <h1>Tu negocio merece una web que <em>realmente vende</em></h1>
+    <p class="hero-sub">Construimos páginas en HTML puro: ultra rápidas, seguras y optimizadas para convertir visitantes en clientes reales desde el primer día.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://wa.me/5930978747864?text=Hola,%20quiero%20más%20información%20sobre%20sus%20servicios" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.053 23.8a.5.5 0 0 0 .609.628l6.115-1.598A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.586 9.586 0 0 1-4.9-1.347l-.352-.208-3.63.951.968-3.535-.228-.362A9.6 9.6 0 1 1 12 21.6z"/></svg>
+        Quiero mi web ahora
+      </a>
+      <a class="btn-secondary" href="#servicios">Ver servicios</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-lbl">HTML Puro · Sin WordPress</div>
+      </div>
+      <div>
+        <div class="stat-num">&lt;1s</div>
+        <div class="stat-lbl">Velocidad de carga</div>
+      </div>
+      <div>
+        <div class="stat-num">$99</div>
+        <div class="stat-lbl">Precio de entrada</div>
+      </div>
+    </div>
+
+    <!-- decorative code block (desktop only) -->
+    <div class="code-deco">
+      <span class="c">&lt;!-- Tu negocio en código --&gt;</span><br>
+      &lt;<span class="k">meta</span> <span class="v">name</span>="speed"<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="v">content</span>="<span class="v">rayo</span>"&gt;<br>
+      &lt;<span class="k">section</span> <span class="v">id</span>="<span class="v">ventas</span>"&gt;<br>
+      &nbsp;&nbsp;&lt;<span class="k">result</span>&gt;✅ Clientes&lt;/<span class="k">result</span>&gt;<br>
+      &lt;/<span class="k">section</span>&gt;<br>
+      <span class="c">/* SEO ✓ Velocidad ✓ */</span>
+    </div>
+  </section>
+
+  <!-- NOSOTROS / WHY -->
+  <section id="nosotros">
+    <span class="section-tag">¿Por qué elegirnos?</span>
+    <h2>Somos <em>diferentes</em> por razones técnicas</h2>
+    <p class="section-lead">No usamos plantillas pesadas. Cada web que construimos es código limpio, escrito a mano, pensado para vender.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <h3>Velocidad de Rayo</h3>
+        <p>HTML puro carga al instante. Google premia la velocidad dándote mejores posiciones en búsquedas.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛡️</div>
+        <h3>Seguridad Blindada</h3>
+        <p>Sin bases de datos ni plugins, tu web es inmune a los virus y hackeos que afectan a WordPress.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📱</div>
+        <h3>100% Adaptable</h3>
+        <p>Perfecta en celular, tablet y computador. El 80% de tus clientes te busca desde el teléfono.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💬</div>
+        <h3>Enfoque en Ventas</h3>
+        <p>No solo se ve bonito: configuramos todo para que el cliente termine escribiéndote al WhatsApp.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔓</div>
+        <h3>Sin Ataduras</h3>
+        <p>Tú decides cuándo actualizar. Precios justos por intervenciones rápidas, sin mensualidades forzadas.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🇪🇨</div>
+        <h3>Para Ecuador</h3>
+        <p>Precios accesibles para la realidad ecuatoriana. Calidad internacional, precio local.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="servicios">
+    <span class="section-tag">Portafolio de Servicios</span>
+    <h2>Todo lo que tu negocio <em>necesita</em></h2>
+    <p class="section-lead">Desde tu primera presencia digital hasta campañas completas de publicidad. Tú eliges lo que necesitas.</p>
+
+    <!-- COMBO DESTACADO -->
+    <div class="combo-wrap">
+      <div>
+        <div class="combo-label">⭐ Más Popular · Recomendado</div>
+        <div class="combo-title">El Combo "Máquina de Ventas"</div>
+        <p style="color:var(--gray);font-size:.9rem;margin-top:.5rem;line-height:1.6">La solución integral para el dueño de negocio que quiere resultados inmediatos sin complicaciones. Web + Publicidad en un solo paquete.</p>
+        <div class="combo-items">
+          <span class="combo-item">Landing Page HTML</span>
+          <span class="combo-item">Estrategia Ads</span>
+          <span class="combo-item">3 artes para redes</span>
+          <span class="combo-item">Conexión WhatsApp</span>
+          <span class="combo-item">Segmentación de audiencia</span>
+        </div>
+      </div>
+      <div class="combo-price-block">
+        <div class="combo-old">Valor por separado: $198</div>
+        <div class="combo-price"><sup>$</sup>190</div>
+        <a class="combo-cta" href="https://wa.me/5930978747864?text=Hola,%20quiero%20el%20Combo%20Máquina%20de%20Ventas%20por%20$190" target="_blank">Quiero este combo</a>
+      </div>
+    </div>
+
+    <!-- CARDS DE SERVICIOS -->
+    <div class="services-grid" style="margin-top:2rem">
+
+      <div class="svc-card">
+        <div class="svc-price"><sup>$</sup>99</div>
+        <div class="svc-name">Landing Express</div>
+        <div class="svc-desc">Presencia digital profesional en una sola sección. Ideal para productos o servicios específicos que necesitan resultados rápidos.</div>
+        <ul class="svc-features">
+          <li>Diseño en HTML puro</li>
+          <li>Optimizada para móviles</li>
+          <li>Botón de WhatsApp integrado</li>
+          <li>Carga ultrarrápida</li>
+          <li>Lista para hosting gratuito</li>
+        </ul>
+        <a class="svc-cta outline" href="https://wa.me/5930978747864?text=Hola,%20quiero%20una%20Landing%20Express%20por%20$99" target="_blank">Consultar</a>
+      </div>
+
+      <div class="svc-card featured">
+        <div class="badge">POPULAR</div>
+        <div class="svc-price"><sup>$</sup>350</div>
+        <div class="svc-name">Web Corporativa</div>
+        <div class="svc-desc">Hasta 7 secciones completas para empresas que buscan autoridad de marca y posicionamiento SEO serio.</div>
+        <ul class="svc-features">
+          <li>Hasta 7 secciones (Nosotros, Servicios, Blog, Galería, etc.)</li>
+          <li>SEO técnico optimizado</li>
+          <li>Diseño exclusivo a medida</li>
+          <li>Integración WhatsApp</li>
+          <li>Entrega en 7 días hábiles</li>
+        </ul>
+        <a class="svc-cta" href="https://wa.me/5930978747864?text=Hola,%20quiero%20una%20Web%20Corporativa%20por%20$350" target="_blank">Consultar</a>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-price"><sup>$</sup>99</div>
+        <div class="svc-name">Plan Lanzamiento Ads</div>
+        <div class="svc-desc">Setup profesional de publicidad para llevar tráfico real a tu negocio desde el primer día.</div>
+        <ul class="svc-features">
+          <li>Setup de cuenta publicitaria</li>
+          <li>3 artes o videos diseñados</li>
+          <li>Segmentación de audiencia</li>
+          <li>Configuración de píxeles de rastreo</li>
+        </ul>
+        <a class="svc-cta outline" href="https://wa.me/5930978747864?text=Hola,%20quiero%20el%20Plan%20de%20Lanzamiento%20Ads%20por%20$99" target="_blank">Consultar</a>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-price"><sup>$</sup>100<span style="font-size:1rem">/mes</span></div>
+        <div class="svc-name">Mantenimiento Mensual</div>
+        <div class="svc-desc">Para empresas que quieren soporte total sin mover un dedo. Cambios ilimitados y gestión completa.</div>
+        <ul class="svc-features">
+          <li>Cambios ilimitados</li>
+          <li>Gestión de hosting incluida</li>
+          <li>Soporte prioritario</li>
+          <li>Actualizaciones de contenido</li>
+        </ul>
+        <a class="svc-cta outline" href="https://wa.me/5930978747864?text=Hola,%20me%20interesa%20el%20Mantenimiento%20Mensual%20por%20$100" target="_blank">Consultar</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRICING TABLE -->
+  <section id="precios">
+    <span class="section-tag">Precios Claros</span>
+    <h2>Sin letras pequeñas, sin <em>sorpresas</em></h2>
+    <p class="section-lead">Precios fijos y transparentes para que puedas planificar tu inversión sin incertidumbres.</p>
+    <table class="price-table">
+      <thead>
+        <tr>
+          <th>Servicio</th>
+          <th>Descripción</th>
+          <th>Precio USD</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td>🔥 Combo Web + Ads <span class="tag-rec">RECOMENDADO</span></td>
+          <td>Landing Page HTML + Plan Lanzamiento Ads completo</td>
+          <td>$190</td>
+        </tr>
+        <tr>
+          <td>Landing Express</td>
+          <td>Web de una sección, HTML puro, lista para publicar</td>
+          <td>$99</td>
+        </tr>
+        <tr>
+          <td>Web Corporativa</td>
+          <td>Hasta 7 secciones, SEO técnico y diseño exclusivo</td>
+          <td>$350</td>
+        </tr>
+        <tr>
+          <td>Plan Lanzamiento Ads</td>
+          <td>Setup de ads, 3 artes, segmentación y píxeles</td>
+          <td>$99</td>
+        </tr>
+        <tr>
+          <td>Gestión de Campaña</td>
+          <td>Montaje y optimización por cada campaña adicional</td>
+          <td>$20</td>
+        </tr>
+        <tr>
+          <td>Actualización de Contenido</td>
+          <td>Cambio de foto, precio o texto en tu web existente</td>
+          <td>$25</td>
+        </tr>
+        <tr>
+          <td>Mantenimiento Mensual</td>
+          <td>Cambios ilimitados + hosting + soporte total</td>
+          <td>$100/mes</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- CTA CONTACTO -->
+  <section id="contacto">
+    <span class="section-tag">Empecemos</span>
+    <h2>¿Listo para conseguir <em>más clientes</em>?</h2>
+    <p class="section-lead">Escríbenos por WhatsApp y en menos de 24 horas tendrás una propuesta personalizada para tu negocio.</p>
+    <a class="wa-btn" href="https://wa.me/5930978747864?text=Hola,%20quiero%20información%20sobre%20sus%20servicios%20de%20diseño%20web" target="_blank">
+      <svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.053 23.8a.5.5 0 0 0 .609.628l6.115-1.598A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.586 9.586 0 0 1-4.9-1.347l-.352-.208-3.63.951.968-3.535-.228-.362A9.6 9.6 0 1 1 12 21.6z"/>
+      </svg>
+      Escribir al WhatsApp
+    </a>
+    <p style="color:var(--gray);font-size:.82rem;margin-top:1.5rem">+593 978 747 864 · Respuesta en menos de 24h</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <strong>Creativos WebSEO</strong> · Ecuador 🇪🇨</p>
+    <p>Hecho con HTML puro · <a href="https://wa.me/5930978747864" target="_blank">WhatsApp</a></p>
+  </footer>
+
+  <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Matrix / código cayendo
+    (function() {
+      const canvas = document.getElementById('matrix-canvas');
+      const ctx = canvas.getContext('2d');
+      const chars = '01</>{}[]()const let var function return if else for while import export class html css seo web px rem vh vw #38bdf8 display flex grid'.split(' ').join('').split('');
+      const fontSize = 13;
+      let cols, drops;
+
+      function resize() {
+        canvas.width  = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        cols  = Math.floor(canvas.width / fontSize);
+        drops = Array(cols).fill(1);
+      }
+
+      function draw() {
+        ctx.fillStyle = 'rgba(13,27,42,0.08)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = fontSize + 'px monospace';
+        for (let i = 0; i < drops.length; i++) {
+          const char = chars[Math.floor(Math.random() * chars.length)];
+          // alternating cyan shades for depth
+          const shade = Math.random() > 0.85 ? '#38bdf8' : (Math.random() > 0.5 ? '#0ea5e9' : '#075985');
+          ctx.fillStyle = shade;
+          ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+      }
+
+      resize();
+      window.addEventListener('resize', resize);
+      setInterval(draw, 55);
+    })();
+  </script>
+</body>
+</html>
