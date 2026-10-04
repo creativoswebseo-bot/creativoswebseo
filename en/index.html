@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Creativos WebSEO | Websites and landing pages</title>
+  <meta name="description" content="Website and landing page design for businesses. Mobile-friendly pages with a direct WhatsApp contact path. Online service." />
+  <link rel="canonical" href="https://creativoswebseo.xyz/en/">
+  <link rel="alternate" hreflang="es" href="https://creativoswebseo.xyz/">
+  <link rel="alternate" hreflang="en" href="https://creativoswebseo.xyz/en/">
+  <link rel="alternate" hreflang="fr" href="https://creativoswebseo.xyz/fr/">
+  <link rel="alternate" hreflang="x-default" href="https://creativoswebseo.xyz/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --navy2: #122033;
+      --cyan: #38bdf8;
+      --cyan2: #0ea5e9;
+      --white: #f0f6ff;
+      --gray: #8aa0b8;
+      --card: #152338;
+      --border: rgba(56,189,248,0.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 6vw;
+      background: rgba(13,27,42,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo-wrap { display: flex; align-items: center; }
+    .logo-text { font-family: 'Syne', sans-serif; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; }
+    .logo-line1 { display: block; font-size: 1rem; color: #c8dff5; }
+    .logo-line2 { display: block; font-size: 1rem; color: #c8dff5; }
+    .logo-line2 .bracket { color: var(--cyan); }
+    .logo-dot { display: inline-block; width: 7px; height: 7px; background: var(--cyan); border-radius: 2px; margin-bottom: 2px; margin-left: 2px; }
+    .logo-i { position: relative; color: #c8dff5; font-variant-numeric: normal; }
+    .logo-i::before {
+      content: 'ı'; /* i sin punto */
+      position: absolute; left: 0; top: 0;
+      color: #c8dff5;
+    }
+    .logo-i { color: transparent; }
+    .logo-i::after {
+      content: '';
+      position: absolute;
+      top: 1px; left: 47%; transform: translateX(-50%);
+      width: 3px; height: 3px;
+      background: var(--cyan); border-radius: 1px;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--gray); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-cta {
+      background: var(--cyan); color: var(--navy); font-weight: 500; font-size: .88rem;
+      padding: .55rem 1.3rem; border-radius: 6px; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .nav-cta:hover { background: var(--cyan2); transform: translateY(-1px); }
+    .language-switch { display:flex; align-items:center; gap:.35rem; margin-left:1rem; }
+    .language-switch a { color:var(--gray); text-decoration:none; font-size:.78rem; font-weight:700; padding:.35rem .45rem; border:1px solid transparent; border-radius:5px; }
+    .language-switch a:hover, .language-switch a[aria-current="page"] { color:var(--cyan); border-color:var(--border); }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all .3s; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 9rem 6vw 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 70% at 60% 50%, rgba(56,189,248,.06) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    #matrix-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      opacity: 0.18; pointer-events: none; z-index: 0;
+    }
+    .hero > *:not(#matrix-canvas):not(.code-deco) { position: relative; z-index: 1; }
+    .code-deco { z-index: 1; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(56,189,248,.1); border: 1px solid var(--border);
+      color: var(--cyan); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase;
+      padding: .35rem .9rem; border-radius: 100px; margin-bottom: 2rem;
+      width: fit-content;
+      animation: fadeUp .6s ease both;
+    }
+    .hero-tag::before { content: ''; width: 7px; height: 7px; background: var(--cyan); border-radius: 50%; animation: pulse 2s infinite; }
+
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+
+    h1 {
+      font-family: 'DM Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.75rem, 3.5vw, 2.8rem); line-height: 1.16; letter-spacing: -.025em;
+      max-width: 600px;
+      animation: fadeUp .7s .1s ease both;
+    }
+    h1 em { font-style: normal; color: var(--cyan); }
+
+    .hero-sub {
+      margin-top: 1.6rem; max-width: 520px;
+      color: var(--gray); font-size: 1.05rem; line-height: 1.7;
+      animation: fadeUp .7s .2s ease both;
+    }
+
+    .hero-actions {
+      margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp .7s .3s ease both;
+    }
+    .offer-72 { width:min(760px,100%); display:grid; grid-template-columns:minmax(0,1fr) auto; gap:1.5rem; align-items:center; margin-top:2rem; padding:1.35rem 1.5rem; border:1px solid rgba(56,189,248,.42); border-radius:14px; background:linear-gradient(120deg,rgba(56,189,248,.11),rgba(21,35,56,.88)); box-shadow:0 16px 42px rgba(0,0,0,.18); }
+    .offer-tag { display:inline-block; margin-bottom:.45rem; color:var(--cyan); font-size:.72rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .offer-72 h2 { font-size:1.35rem; line-height:1.2; margin:0; }
+    .offer-72 p { max-width:520px; color:var(--gray); font-size:.88rem; line-height:1.55; margin:.5rem 0 0; }
+    .offer-price { text-align:center; min-width:145px; }
+    .offer-price small { display:block; color:var(--gray); }
+    .offer-price strong { display:block; color:var(--cyan); font:800 1.8rem 'Syne',sans-serif; margin:.12rem 0 .65rem; }
+    .offer-price a { display:inline-block; color:var(--navy); background:var(--cyan); font-weight:800; text-decoration:none; border-radius:7px; padding:.65rem .9rem; }
+    .offer-price a:hover { background:var(--cyan2); }
+    .market-control { display:flex; align-items:center; flex-wrap:wrap; gap:.5rem; margin-top:.85rem; color:var(--gray); font-size:.78rem; }
+    .market-control select { background:var(--navy); color:var(--white); border:1px solid var(--border); border-radius:5px; padding:.35rem .45rem; font:inherit; }
+    .geo-note { display:block; margin-top:.4rem; color:var(--gray); font-size:.69rem; line-height:1.4; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--cyan); color: var(--navy); font-weight: 500;
+      padding: .85rem 2rem; border-radius: 8px; text-decoration: none;
+      font-size: 1rem; transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: var(--cyan2); transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 1px solid var(--border); color: var(--white);
+      padding: .85rem 2rem; border-radius: 8px; text-decoration: none;
+      font-size: 1rem; transition: border-color .2s, transform .15s;
+    }
+    .btn-secondary:hover { border-color: var(--cyan); transform: translateY(-2px); }
+
+    .hero-stats {
+      margin-top: 2rem; display: flex; gap: 3rem; flex-wrap: wrap;
+      animation: fadeUp .7s .4s ease both;
+    }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--cyan); }
+    .stat-lbl { font-size: .82rem; color: var(--gray); margin-top: .1rem; }
+
+    /* decorative code block */
+    .code-deco {
+      position: absolute; right: 6vw; top: 50%; transform: translateY(-50%);
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.5rem 2rem; font-family: monospace; font-size: .82rem; line-height: 1.9;
+      color: var(--gray); max-width: 320px;
+      animation: fadeUp .7s .5s ease both;
+      display: none; /* shown via media query */
+    }
+    .code-deco .k { color: var(--cyan); }
+    .code-deco .v { color: #86efac; }
+    .code-deco .c { color: #475569; }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 6vw; }
+    .section-tag {
+      display: inline-block; color: var(--cyan); font-size: .78rem;
+      letter-spacing: .15em; text-transform: uppercase; margin-bottom: 1rem;
+    }
+    h2 {
+      font-family: 'DM Sans', sans-serif; font-weight: 800;
+      font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -.02em; line-height: 1.1;
+      max-width: 600px;
+    }
+    h2 em { font-style: normal; color: var(--cyan); }
+    .section-lead { color: var(--gray); margin-top: 1rem; max-width: 500px; line-height: 1.7; }
+
+    /* ── WHY ── */
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .why-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 2rem 1.8rem; transition: border-color .2s, transform .2s;
+    }
+    .why-card:hover { border-color: var(--cyan); transform: translateY(-4px); }
+    .why-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+    .why-card h3 { font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .why-card p { font-size: .88rem; color: var(--gray); line-height: 1.6; }
+
+    /* ── SERVICES ── */
+    #servicios { background: var(--navy2); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .svc-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 2rem; position: relative; overflow: hidden;
+      transition: transform .2s, border-color .2s;
+    }
+    .svc-card:hover { transform: translateY(-5px); border-color: var(--cyan); }
+    .svc-card.featured { border-color: var(--cyan); }
+    .badge {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      background: var(--cyan); color: var(--navy); font-size: .7rem; font-weight: 700;
+      padding: .2rem .7rem; border-radius: 100px; letter-spacing: .05em;
+    }
+    .svc-price { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--cyan); }
+    .svc-price sup { font-size: 1rem; vertical-align: super; }
+    .svc-name { font-family: 'DM Sans', sans-serif; font-size: 1.05rem; font-weight: 700; margin: .5rem 0 .8rem; }
+    .svc-desc { color: var(--gray); font-size: .88rem; line-height: 1.65; margin-bottom: 1.4rem; }
+    .svc-features { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .svc-features li { font-size: .85rem; color: var(--gray); display: flex; gap: .6rem; align-items: flex-start; }
+    .svc-features li::before { content: '✓'; color: var(--cyan); flex-shrink: 0; font-weight: 700; }
+    .svc-cta {
+      display: block; text-align: center; margin-top: 1.8rem;
+      background: var(--cyan); color: var(--navy); font-weight: 500;
+      padding: .7rem; border-radius: 7px; text-decoration: none;
+      font-size: .9rem; transition: background .2s;
+    }
+    .svc-cta:hover { background: var(--cyan2); }
+    .svc-cta.outline {
+      background: none; border: 1px solid var(--border); color: var(--white);
+    }
+    .svc-cta.outline:hover { border-color: var(--cyan); color: var(--cyan); background: none; }
+
+    /* ── COMBO HIGHLIGHT ── */
+    .combo-wrap {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, rgba(56,189,248,.12), rgba(14,165,233,.05));
+      border: 1px solid var(--cyan); border-radius: 16px;
+      padding: 2.5rem 2rem;
+      display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center;
+    }
+    .combo-label { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--cyan); margin-bottom: .5rem; }
+    .combo-title { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 800; }
+    .combo-items { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+    .combo-item {
+      background: rgba(56,189,248,.1); border: 1px solid var(--border);
+      font-size: .8rem; padding: .3rem .8rem; border-radius: 6px;
+    }
+    .combo-price-block { text-align: center; flex-shrink: 0; }
+    .combo-price { font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800; color: var(--cyan); line-height: 1; }
+    .combo-old { color: var(--gray); text-decoration: line-through; font-size: .9rem; margin-bottom: .3rem; }
+    .combo-cta {
+      display: block; margin-top: 1rem;
+      background: var(--cyan); color: var(--navy); font-weight: 600;
+      padding: .7rem 1.5rem; border-radius: 8px; text-decoration: none;
+      font-size: .9rem; text-align: center; white-space: nowrap;
+    }
+    .combo-cta:hover { background: var(--cyan2); }
+
+    /* ── PRICING TABLE ── */
+    #precios { }
+    .price-table {
+      width: 100%; border-collapse: collapse; margin-top: 2.5rem;
+      font-size: .9rem;
+    }
+    .price-table thead { background: var(--card); }
+    .price-table th {
+      text-align: left; padding: 1rem 1.3rem;
+      color: var(--cyan); font-family: 'Syne', sans-serif; font-size: .82rem;
+      letter-spacing: .08em; text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+    .price-table td { padding: .85rem 1.3rem; border-bottom: 1px solid var(--border); color: var(--gray); }
+    .price-table tr:hover td { background: rgba(56,189,248,.04); }
+    .price-table td:first-child { color: var(--white); font-weight: 400; }
+    .price-table td:last-child { color: var(--cyan); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; }
+    .price-table .highlight td { background: rgba(56,189,248,.06); }
+    .tag-rec {
+      display: inline-block; background: var(--cyan); color: var(--navy);
+      font-size: .65rem; font-weight: 700; padding: .1rem .5rem; border-radius: 4px;
+      margin-left: .5rem; letter-spacing: .05em;
+    }
+
+    /* ── CTA SECTION ── */
+    #contacto {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(56,189,248,.08), rgba(13,27,42,0) 60%);
+      border-top: 1px solid var(--border);
+    }
+    #contacto h2 { max-width: 100%; margin: 0 auto; }
+    #contacto .section-lead { margin: 1rem auto 0; text-align: center; }
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: .8rem;
+      background: #25D366; color: #fff; font-weight: 600;
+      padding: 1rem 2.2rem; border-radius: 10px; text-decoration: none;
+      font-size: 1.05rem; margin-top: 2.5rem;
+      transition: background .2s, transform .15s; box-shadow: 0 8px 32px rgba(37,211,102,.25);
+    }
+    .wa-btn:hover { background: #1ebe5a; transform: translateY(-3px); }
+    .wa-icon { width: 24px; height: 24px; fill: white; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 6vw; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer p { color: var(--gray); font-size: .83rem; }
+    footer a { color: var(--cyan); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (min-width: 900px) {
+      .code-deco { display: block; }
+      h1 { max-width: 560px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .language-switch { margin-left:auto; margin-right:.75rem; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 65px; left: 0; right: 0;
+        background: var(--navy2); padding: 2rem 6vw;
+        border-bottom: 1px solid var(--border); gap: 1.5rem;
+      }
+      .nav-links.open + .nav-cta { display: block; margin: 0 6vw 1rem; }
+      .combo-wrap { grid-template-columns: 1fr; }
+      .combo-price-block { text-align: left; }
+      .offer-72 { grid-template-columns:1fr; gap:1rem; padding:1.1rem; }
+      .offer-price { text-align:left; }
+      .offer-price strong { display:inline-block; margin-right:.75rem; }
+    }
+    @media (max-width: 500px) {
+      .hero-stats { gap: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo-wrap">
+      <div class="logo-text">
+        <span class="logo-line1">Creat<span class="logo-i">i</span>vos</span>
+        <span class="logo-line2"><span class="bracket">&lt;</span>WebSEO<span class="bracket">&gt;</span></span>
+      </div>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#nosotros">About</a></li>
+      <li><a href="#servicios">Services</a></li>
+      <li><a href="#precios">Pricing</a></li>
+      <li><a href="#contacto">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="https://wa.me/593978747864?text=Hi%2C%20I%20would%20like%20more%20information%20about%20your%20services" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    <div class="language-switch" aria-label="Choose language">
+      <a href="/" lang="es">ES</a>
+      <a href="/en/" lang="en" aria-current="page">EN</a>
+      <a href="/fr/" lang="fr">FR</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <canvas id="matrix-canvas"></canvas>
+    <div class="hero-tag">Website design · Online service</div>
+    <h1>A clear page that helps customers understand <em>what you offer and how to reach you</em></h1>
+    <p class="hero-sub">We build lightweight, mobile-friendly pages to present your business, service, or offer and make it easy for visitors to contact you.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://wa.me/593978747864?text=Hi%2C%20I%20would%20like%20more%20information%20about%20your%20services" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.053 23.8a.5.5 0 0 0 .609.628l6.115-1.598A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.586 9.586 0 0 1-4.9-1.347l-.352-.208-3.63.951.968-3.535-.228-.362A9.6 9.6 0 1 1 12 21.6z"/></svg>
+        Discuss my project
+      </a>
+      <a class="btn-secondary" href="#servicios">View services</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">1 page</div>
+        <div class="stat-lbl">One goal and a direct contact path</div>
+      </div>
+      <div>
+        <div class="stat-num">72 h</div>
+        <div class="stat-lbl">72-hour delivery after materials arrive</div>
+      </div>
+      <div>
+        <div class="stat-num" data-promo-price>USD 149</div>
+        <div class="stat-lbl">72-hour landing offer</div>
+      </div>
+    </div>
+
+    <div class="offer-72" id="landing-flash">
+      <div>
+        <span class="offer-tag">Special offer · delivered in 72 hours</span>
+        <h2>Una landing page lista para presentar tu offer</h2>
+        <p>One mobile-friendly page with a WhatsApp button. The 72-hour delivery window starts once we receive your copy, images, and required details.</p>
+        <label class="market-control" for="market-select">Show price for
+          <select id="market-select" aria-label="Choose pricing market">
+            <option value="latam">Latin America · USD</option>
+            <option value="us">United States · USD</option>
+            <option value="fr">France · EUR</option>
+          </select>
+        </label>
+        <small class="geo-note">We suggest a market using your approximate country, checked through an IP lookup service. You can change it; VPNs may affect detection.</small>
+      </div>
+      <div class="offer-price">
+        <small>Promotional price</small>
+        <strong data-promo-price>USD 149</strong>
+        <a data-promo-cta href="https://wa.me/593978747864?text=Hi%2C%20I%20am%20interested%20in%20the%2072-hour%20Landing%20Page%20offer" target="_blank" rel="noopener">Ask on WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- decorative code block (desktop only) -->
+    <div class="code-deco">
+      <span class="c">&lt;!-- Your business in code --&gt;</span><br>
+      &lt;<span class="k">meta</span> <span class="v">name</span>="speed"<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="v">content</span>="<span class="v">rayo</span>"&gt;<br>
+      &lt;<span class="k">section</span> <span class="v">id</span>="<span class="v">ventas</span>"&gt;<br>
+      &nbsp;&nbsp;&lt;<span class="k">result</span>&gt;✅ Customers&lt;/<span class="k">result</span>&gt;<br>
+      &lt;/<span class="k">section</span>&gt;<br>
+      <span class="c">/* SEO ✓ Velocidad ✓ */</span>
+    </div>
+  </section>
+
+  <!-- NOSOTROS / WHY -->
+  <section id="nosotros">
+    <span class="section-tag">Why work with us?</span>
+    <h2>A website focused on your <em>offer</em></h2>
+    <p class="section-lead">We focus on clear structure, mobile readability, and an easy way for interested visitors to contact you.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <h3>Lightweight pages</h3>
+        <p>We use a lightweight structure and make sure the page works well on phones and everyday connections.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛡️</div>
+        <h3>Fewer dependencies</h3>
+        <p>Una página estática evita depender de una base de datos o de muchos complementos para mostrar tu offer.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📱</div>
+        <h3>Mobile-friendly</h3>
+        <p>The content and buttons adapt to phones, tablets, and computers.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💬</div>
+        <h3>Contact visible</h3>
+        <p>Organizamos la página alrededor de tu offer y facilitamos que una persona interesada te escriba.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔓</div>
+        <h3>Clear project scope</h3>
+        <p>We agree on what the project includes before work begins. Ongoing services are quoted separately.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🇪🇨</div>
+        <h3>Online service</h3>
+        <p>We work remotely and coordinate projects on WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="servicios">
+    <span class="section-tag">Portafolio de Services</span>
+    <h2>Services your business <em>may need</em></h2>
+    <p class="section-lead">From a first online presence to campaign setup. Choose the service that fits your needs.</p>
+
+    <!-- COMBO DESTACADO -->
+    <div class="combo-wrap">
+      <div>
+        <div class="combo-label">Complete package</div>
+        <div class="combo-title">Website + Ads Setup Package</div>
+        <p style="color:var(--gray);font-size:.9rem;margin-top:.5rem;line-height:1.6">A landing page and initial ad campaign setup in one package. The ad spend is separate.</p>
+        <div class="combo-items">
+          <span class="combo-item">HTML landing page</span>
+          <span class="combo-item">Initial Ads setup</span>
+          <span class="combo-item">3 social media graphics</span>
+          <span class="combo-item">WhatsApp integration</span>
+          <span class="combo-item">Audience targeting</span>
+        </div>
+      </div>
+      <div class="combo-price-block">
+        <div class="combo-old">Separate services: USD 198</div>
+        <div class="combo-price"><sup>$</sup>190</div>
+        <a class="combo-cta" href="https://wa.me/593978747864?text=Hi%2C%20I%20am%20interested%20in%20the%20Website%20and%20Ads%20package%20for%20USD%20190" target="_blank">Choose this package</a>
+      </div>
+    </div>
+
+    <!-- CARDS DE SERVICIOS -->
+    <div class="services-grid" style="margin-top:2rem">
+
+      <div class="svc-card">
+        <div class="svc-price"><sup>$</sup>99</div>
+        <div class="svc-name">Express Landing Page</div>
+        <div class="svc-desc">Una página enfocada en presentar una offer o servicio y facilitar el contacto.</div>
+        <ul class="svc-features">
+          <li>Built with HTML</li>
+          <li>Mobile-friendly</li>
+          <li>WhatsApp contact button</li>
+          <li>Estructura ligera</li>
+          <li>Lista para publicarse en un hosting compatible</li>
+        </ul>
+        <a class="svc-cta outline" href="https://wa.me/593978747864?text=Hi%2C%20I%20am%20interested%20in%20an%20Express%20Landing%20Page%20for%20USD%2099" target="_blank">Ask about this service</a>
+      </div>
+
+      <div class="svc-card featured">
+        <div class="badge">POPULAR</div>
+        <div class="svc-price"><sup>$</sup>350</div>
+        <div class="svc-name">Business Website</div>
+        <div class="svc-desc">Up to 7 sections to present your company, services, and contact options.</div>
+        <ul class="svc-features">
+          <li>Hasta 7 secciones (About, Services, Blog, Galería, etc.)</li>
+          <li>Basic technical SEO setup</li>
+          <li>Custom design</li>
+          <li>WhatsApp integration</li>
+          <li>Delivery in 7 business days</li>
+        </ul>
+        <a class="svc-cta" href="https://wa.me/593978747864?text=Hi%2C%20I%20am%20interested%20in%20a%20Business%20Website%20for%20USD%20350" target="_blank">Ask about this service</a>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-price"><sup>$</sup>99</div>
+        <div class="svc-name">Ads Launch Setup</div>
+        <div class="svc-desc">Initial campaign setup. Ad spend is not included.</div>
+        <ul class="svc-features">
+          <li>Ad account setup</li>
+          <li>3 designed graphics or videos</li>
+          <li>Audience targeting</li>
+          <li>Tracking pixel setup</li>
+        </ul>
+        <a class="svc-cta outline" href="https://wa.me/593978747864?text=Hi%2C%20I%20am%20interested%20in%20Ads%20launch%20setup%20for%20USD%2099" target="_blank">Ask about this service</a>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-price"><sup>$</sup>100<span style="font-size:1rem">/mes</span></div>
+        <div class="svc-name">Monthly Maintenance</div>
+        <div class="svc-desc">Ongoing support and content updates within the agreed scope.</div>
+        <ul class="svc-features">
+          <li>Updates under the agreed plan</li>
+          <li>Hosting management included</li>
+          <li>Priority support</li>
+          <li>Content updates</li>
+        </ul>
+        <a class="svc-cta outline" href="https://wa.me/593978747864?text=Hi%2C%20I%20am%20interested%20in%20monthly%20maintenance%20for%20USD%20100" target="_blank">Ask about this service</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRICING TABLE -->
+  <section id="precios">
+    <span class="section-tag">Pricing Claros</span>
+    <h2>Services y <em>precios</em></h2>
+    <p class="section-lead">Prices apply to the scope shown. Ask for a quote if you need additional features.</p>
+    <table class="price-table">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Description</th>
+          <th>Price (USD)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td>🔥 Website + Ads Package <span class="tag-rec">FEATURED</span></td>
+          <td>HTML landing page + Ads Launch Setup completo</td>
+          <td>$190</td>
+        </tr>
+        <tr>
+          <td>Express Landing Page</td>
+          <td>One-page website, built with HTML, ready to publish</td>
+          <td>$99</td>
+        </tr>
+        <tr>
+          <td>Business Website</td>
+          <td>Up to 7 sections, technical SEO, and custom design</td>
+          <td>$350</td>
+        </tr>
+        <tr>
+          <td>Ads Launch Setup</td>
+          <td>Ads setup, 3 graphics, targeting, and tracking pixels</td>
+          <td>$99</td>
+        </tr>
+        <tr>
+          <td>Campaign Setup</td>
+          <td>Setup and optimization for each additional campaign</td>
+          <td>$20</td>
+        </tr>
+        <tr>
+          <td>Content Update</td>
+          <td>Update a photo, price, or text on your existing website</td>
+          <td>$25</td>
+        </tr>
+        <tr>
+          <td>Monthly Maintenance</td>
+          <td>Updates + hosting + support under the agreed plan</td>
+          <td>$100/mes</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- CTA CONTACTO -->
+  <section id="contacto">
+    <span class="section-tag">Let’s get started</span>
+    <h2>Want to present your <em>offer</em>?</h2>
+    <p class="section-lead">Tell us what you need on WhatsApp and we’ll reply with the next step.</p>
+    <a class="wa-btn" href="https://wa.me/593978747864?text=Hi%2C%20I%20would%20like%20information%20about%20your%20web%20design%20services" target="_blank">
+      <svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.053 23.8a.5.5 0 0 0 .609.628l6.115-1.598A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.6a9.586 9.586 0 0 1-4.9-1.347l-.352-.208-3.63.951.968-3.535-.228-.362A9.6 9.6 0 1 1 12 21.6z"/>
+      </svg>
+      Message us on WhatsApp
+    </a>
+    <p style="color:var(--gray);font-size:.82rem;margin-top:1.5rem">+593 978 747 864 · Online service</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 <strong>Creativos WebSEO</strong> · Online service</p>
+    <p>Built with HTML · <a href="https://wa.me/593978747864" target="_blank">WhatsApp</a></p>
+  </footer>
+
+  <script src="../assets/js/market-pricing.js"></script>
+  <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Matrix / código cayendo
+    (function() {
+      const canvas = document.getElementById('matrix-canvas');
+      const ctx = canvas.getContext('2d');
+      const chars = '01</>{}[]()const let var function return if else for while import export class html css seo web px rem vh vw #38bdf8 display flex grid'.split(' ').join('').split('');
+      const fontSize = 13;
+      let cols, drops;
+
+      function resize() {
+        canvas.width  = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        cols  = Math.floor(canvas.width / fontSize);
+        drops = Array(cols).fill(1);
+      }
+
+      function draw() {
+        ctx.fillStyle = 'rgba(13,27,42,0.08)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.font = fontSize + 'px monospace';
+        for (let i = 0; i < drops.length; i++) {
+          const char = chars[Math.floor(Math.random() * chars.length)];
+          // alternating cyan shades for depth
+          const shade = Math.random() > 0.85 ? '#38bdf8' : (Math.random() > 0.5 ? '#0ea5e9' : '#075985');
+          ctx.fillStyle = shade;
+          ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+      }
+
+      resize();
+      window.addEventListener('resize', resize);
+      setInterval(draw, 55);
+    })();
+  </script>
+</body>
+</html>
