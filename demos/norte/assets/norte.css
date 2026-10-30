@@ -35,3 +35,4 @@ h1{font-size:clamp(4rem,15vw,13rem);line-height:.8;font-weight:700;letter-spacin
 .cur{display:none}@media(pointer:fine){.js .cur{display:block;position:fixed;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:99;transition:width .3s,height .3s,margin .3s}.cur.big{width:84px;height:84px;margin:-34px}}
 @media(max-width:760px){.hero,.pp,.co{grid-template-columns:1fr}.hl{border-right:0}.crow{grid-template-columns:70px 1fr auto}.crow .art{width:70px}}
 @media(prefers-reduced-motion:reduce){.mq div{animation:none}.js .i,.js .art,.js .rv{transition:none}}
+@media(prefers-reduced-motion:reduce){.js .art{clip-path:none!important}.js .rv{opacity:1!important;transform:none!important}.js .i{transform:none!important}.ct{display:none}}
